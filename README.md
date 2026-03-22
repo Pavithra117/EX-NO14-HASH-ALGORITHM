@@ -28,27 +28,28 @@ To implement HASH ALGORITHM
 
 ## Program:
 ```
-
 #include <stdio.h>
 #include <string.h>
+
 void computeSimpleHash(const char *message, unsigned char *hash) {
     unsigned char temp = 0;
     for (int i = 0; message[i] != '\0'; i++) {
-        temp = temp ^ message[i];  
-        temp += message[i];       
+        temp = temp ^ message[i];
+        temp += message[i];
     }
     *hash = temp;
 }
+
 int main() {
-    char message[256];      
-    unsigned char hash; 
-    char receivedHash[3];   
+    char message[256];
+    unsigned char hash;
+    char receivedHash[3];
     printf("Enter the message: ");
-    scanf("%s", message);
+    scanf("%255s", message);
     computeSimpleHash(message, &hash);
     printf("Computed Hash (in hex): %02x\n", hash);
     printf("Enter the received hash (in hex): ");
-    scanf("%s", receivedHash);
+    scanf("%2s", receivedHash);
     unsigned int receivedHashValue;
     sscanf(receivedHash, "%02x", &receivedHashValue);
     if (hash == receivedHashValue) {
@@ -56,12 +57,12 @@ int main() {
     } else {
         printf("Hash verification failed. Message has been altered.\n");
     }
-
     return 0;
 }
 ```
 
 ## Output:
+<img width="956" height="576" alt="Screenshot 2026-03-17 155106" src="https://github.com/user-attachments/assets/8f688e5a-7072-4199-bc4d-34695afd7222" />
 
 ## Result:
 The program is executed successfully.
